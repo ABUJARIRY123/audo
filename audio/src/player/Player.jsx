@@ -1,7 +1,13 @@
 import React, { useRef } from 'react';
-import { BsFillPlayCircleFill, BsFillPauseCircleFill, BsFillSkipStartCircleFill, BsSkipEndCircleFill, BsFillSkipEndCircleFill } from 'react-icons/bs';
+import {
+    BsFillPlayCircleFill, BsFillPauseCircleFill, BsFillSkipStartCircleFill, BsSkipEndCircleFill,
+    BsFillSkipEndCircleFill, BsDownload
+} from 'react-icons/bs';
+import './Player.scss';
 
+const BASE_URL = 'http://localhost:3001'; // replace with your actual base URL
 const Player = ({ audioElem, isplaying, setisplaying, currentSong, setCurrentSong, songs }) => {
+    const downloadLink = `${BASE_URL}${currentSong.url}`;
 
     const clickRef = useRef();
 
@@ -57,12 +63,16 @@ const Player = ({ audioElem, isplaying, setisplaying, currentSong, setCurrentSon
                 </div>
             </div>
             <div className="controls">
-                <BsFillSkipStartCircleFill className='btn_action' onClick={skipBack} />
-                {isplaying ? <BsFillPauseCircleFill className='btn_action pp' onClick={PlayPause} /> : <BsFillPlayCircleFill className='btn_action pp' onClick={PlayPause} />}
-                <BsFillSkipEndCircleFill className='btn_action' onClick={skiptoNext} />
+                <div>
+                    <BsFillSkipStartCircleFill className='btn_action' onClick={skipBack} />
+                    {isplaying ? <BsFillPauseCircleFill className='btn_action pp' onClick={PlayPause} /> : <BsFillPlayCircleFill className='btn_action pp' onClick={PlayPause} />}
+                    <BsFillSkipEndCircleFill className='btn_action' onClick={skiptoNext} />
+                </div>
+                <a href={downloadLink} download>
+                    <BsDownload className='btn_action' />
+                </a>
             </div>
         </div>
-
     )
 }
 

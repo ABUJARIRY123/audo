@@ -1,6 +1,7 @@
-import Player from './Player/Player';
-import { songsdata } from './Player/Audio';
+import Player from './player/Player.jsx';
 import { useRef, useState, useEffect } from 'react';
+import { songsdata } from './player/Audio.js';
+import './App.css';
 
 const App = () => {
   const [songs, setSongs] = useState(songsdata);
